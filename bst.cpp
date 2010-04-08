@@ -9,17 +9,17 @@ class BinTreeNode
 	public:
 		int deep;
 		BinTreeNode *leftChild,*rightChild;
-		int data;//数据域
+		int data;
         BinTreeNode():deep(0),leftChild(NULL),rightChild(NULL){}
 		BinTreeNode(int item,BinTreeNode*left=NULL,
 		BinTreeNode*right=NULL):data(item),leftChild(left),
 		rightChild(right){}
 		
-		int GetData()const{return data;}//取得结点数据值
+		int GetData()const{return data;}
 		
-		BinTreeNode* GetLeft()const{return leftChild;}//取得结点左子女指针值
+		BinTreeNode* GetLeft()const{return leftChild;}
 		
-		BinTreeNode* GetRight()const{return rightChild;}//取得结点右子女指针值
+		BinTreeNode* GetRight()const{return rightChild;}
 		
 		void SetData(const int &item){data=item;}//修改结点数据值
 		
@@ -63,16 +63,16 @@ class BinaryTree
 			return root!=NULL?current->rightChild:NULL;
 		}
 		
-		virtual void BinaryTree::Insert(BinTreeNode *&current,const int &item);//插入新元素
-		void BinaryTree::Remove(int x,BinTreeNode* &ptr);//删除节点
-		BinTreeNode* BinaryTree::Min(BinTreeNode* ptr);//在ptr的子树中搜寻最小结点,返回指针
+		virtual void Insert(BinTreeNode *&current,const int &item);//插入新元素
+		void Remove(int x,BinTreeNode* &ptr);//删除节点
+		BinTreeNode* Min(BinTreeNode* ptr);//在ptr的子树中搜寻最小结点,返回指针
 		virtual int Find(const int& item)const{return 0;}//搜索元素
 		
 		
 		const BinTreeNode* GetRoot()const {return root;}//取根
-		int BinaryTree::PrintBSTHor(BinTreeNode*current,ostream&out);//打印出BST的视图
-		int BinaryTree::PrintBSTVer(BinTreeNode* aa);
-		void BinaryTree::SetHeight(BinTreeNode* ptr,int height);//设置当前节点的所有子节点的高度
+		int PrintBSTHor(BinTreeNode*current,ostream&out);//打印出BST的视图
+		int PrintBSTVer(BinTreeNode* aa);
+		void SetHeight(BinTreeNode* ptr,int height);//设置当前节点的所有子节点的高度
 		friend istream &operator >> (istream &in,BinaryTree&Tree);
 		friend ostream &operator << (ostream &out ,BinaryTree&Tree);
 	private:
@@ -121,13 +121,13 @@ int BinaryTree::PrintBSTVer(BinTreeNode* aa)
 int BinaryTree::PrintBSTHor(BinTreeNode*current,ostream&out)//打印出BST的视图
 {
 	CirQueue<BinTreeNode*> Q;
-	InitQueue(&Q);
+	Q.InitQueue();
 	if(NULL!=current)
 	{
-		EnQueue(&Q,current);
-		while(!QueueEmpty(&Q))
+		Q.EnQueue(current);
+		while(!Q.QueueEmpty())
 		{
-			current=DeQueue(&Q);
+			current=Q.DeQueue();
 			if(currentHeight<current->deep)
 			{
 				currentHeight=current->deep;
@@ -136,11 +136,11 @@ int BinaryTree::PrintBSTHor(BinTreeNode*current,ostream&out)//打印出BST的视图
 			out<<current->data<<",";
 			if(NULL!=current->leftChild)
 			{
-				EnQueue(&Q,current->leftChild);
+				Q.EnQueue(current->leftChild);
 			}
 			if(NULL!=current->rightChild)
 			{
-				EnQueue(&Q,current->rightChild);
+				Q.EnQueue(current->rightChild);
 			}
 		}
 	}
@@ -255,7 +255,7 @@ ostream & operator<<(ostream &out,BinaryTree&Tree)
 	return out;
 }
 
-int _tmain(int argc, _TCHAR* argv[])
+int main()
 {
 	BinaryTree tree(0);
 	tree.leftHeight=tree.rightHeight=0;
