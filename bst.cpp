@@ -35,7 +35,7 @@ class BinaryTree
 		BinTreeNode* root;//二叉树的根指针
 		BinaryTree():root(NULL){fout.open("output.txt");}//构造函数
 		BinaryTree(int value):RefValue(value),root(NULL){fout.open("output.txt");}
-		virtual ~BinaryTree(){destroy(root);}
+		virtual ~BinaryTree(){destroy(root);fout.close();}
 		
 		
 		virtual int IsEmpty(){return root==NULL ? 1:0;}//判二叉树空否
