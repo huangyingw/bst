@@ -33,8 +33,8 @@ class BinaryTree
 		int height;//BST树的总高度
 		int currentHeight;//当前的高度
 		BinTreeNode* root;//二叉树的根指针
-		BinaryTree():root(NULL){}//构造函数
-		BinaryTree(int value):RefValue(value),root(NULL){}
+		BinaryTree():root(NULL){fout.open("output.txt");}//构造函数
+		BinaryTree(int value):RefValue(value),root(NULL){fout.open("output.txt");}
 		virtual ~BinaryTree(){destroy(root);}
 		
 		
