@@ -1,3 +1,4 @@
+#include <fstream>
 #include<iostream>
 #include<math.h>
 using namespace std;
@@ -10,25 +11,17 @@ class BinTreeNode
 		int deep;
 		BinTreeNode *leftChild,*rightChild;
 		int data;
-        BinTreeNode():deep(0),leftChild(NULL),rightChild(NULL){}
+    BinTreeNode():deep(0),leftChild(NULL),rightChild(NULL){}
 		BinTreeNode(int item,BinTreeNode*left=NULL,
 		BinTreeNode*right=NULL):data(item),leftChild(left),
 		rightChild(right){}
-		
 		int GetData()const{return data;}
-		
 		BinTreeNode* GetLeft()const{return leftChild;}
-		
 		BinTreeNode* GetRight()const{return rightChild;}
-		
 		void SetData(const int &item){data=item;}//修改结点数据值
-		
 		void SetLeft(BinTreeNode*L){leftChild=L;}//修改结点左子女指针值
-		
 		void SetRight(BinTreeNode*R){rightChild=R;}//修改结点右子女指针值
 	private:
-		
-		
 };
 
 class BinaryTree
@@ -40,9 +33,9 @@ class BinaryTree
 		int height;//BST树的总高度
 		int currentHeight;//当前的高度
 		BinTreeNode* root;//二叉树的根指针
-		BinaryTree():root(NULL){}//构造函数
-		BinaryTree(int value):RefValue(value),root(NULL){}
-		virtual ~BinaryTree(){destroy(root);}
+		BinaryTree():root(NULL){fout.open("output.txt");}//构造函数
+		BinaryTree(int value):RefValue(value),root(NULL){fout.open("output.txt");}
+		virtual ~BinaryTree(){destroy(root);fout.close();}
 		
 		
 		virtual int IsEmpty(){return root==NULL ? 1:0;}//判二叉树空否
@@ -76,11 +69,11 @@ class BinaryTree
 		friend istream &operator >> (istream &in,BinaryTree&Tree);
 		friend ostream &operator << (ostream &out ,BinaryTree&Tree);
 	private:
-		
 		int RefValue;//数据输入停止的标志
 		BinTreeNode* parent(BinTreeNode*start,BinTreeNode* current);
 		void Traverse(BinTreeNode* current,ostream& out)const;
 		void destroy(BinTreeNode* current);
+		ofstream fout;
 };
 
 void BinaryTree::destroy(BinTreeNode* current)
