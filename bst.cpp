@@ -1,4 +1,4 @@
-
+#include <fstream>
 #include<iostream>
 #include<math.h>
 using namespace std;
@@ -11,25 +11,17 @@ class BinTreeNode
 		int deep;
 		BinTreeNode *leftChild,*rightChild;
 		int data;
-        BinTreeNode():deep(0),leftChild(NULL),rightChild(NULL){}
+    BinTreeNode():deep(0),leftChild(NULL),rightChild(NULL){}
 		BinTreeNode(int item,BinTreeNode*left=NULL,
 		BinTreeNode*right=NULL):data(item),leftChild(left),
 		rightChild(right){}
-		
 		int GetData()const{return data;}
-		
 		BinTreeNode* GetLeft()const{return leftChild;}
-		
 		BinTreeNode* GetRight()const{return rightChild;}
-		
 		void SetData(const int &item){data=item;}//修改结点数据值
-		
 		void SetLeft(BinTreeNode*L){leftChild=L;}//修改结点左子女指针值
-		
 		void SetRight(BinTreeNode*R){rightChild=R;}//修改结点右子女指针值
 	private:
-		
-		
 };
 
 class BinaryTree
@@ -77,11 +69,11 @@ class BinaryTree
 		friend istream &operator >> (istream &in,BinaryTree&Tree);
 		friend ostream &operator << (ostream &out ,BinaryTree&Tree);
 	private:
-		
 		int RefValue;//数据输入停止的标志
 		BinTreeNode* parent(BinTreeNode*start,BinTreeNode* current);
 		void Traverse(BinTreeNode* current,ostream& out)const;
 		void destroy(BinTreeNode* current);
+		ofstream fout;
 };
 
 void BinaryTree::destroy(BinTreeNode* current)
