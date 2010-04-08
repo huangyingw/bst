@@ -1,18 +1,15 @@
-// BST.cpp : Defines the entry point for the console application.
-//
 
-#include "stdafx.h"
 #include<iostream>
 #include<math.h>
 using namespace std;
-#include "E:\programming\pass\c_c++\s数据结构与算法\循环队列\CirQueue.h"
+#include "/media/myproject/git/c_c++/linux/data_structure/cirQueue/CirQueue.h"
 class BinaryTree;
 class BinTreeNode
 {
 	friend class BinaryTree;
 	public:
-		int deep;//节点所在的层次
-		BinTreeNode *leftChild,*rightChild;//左子女，右子女链域
+		int deep;
+		BinTreeNode *leftChild,*rightChild;
 		int data;//数据域
         BinTreeNode():deep(0),leftChild(NULL),rightChild(NULL){}
 		BinTreeNode(int item,BinTreeNode*left=NULL,
