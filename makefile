@@ -1,6 +1,6 @@
-run : avltree.o
-	g++ -o run avltree.o
-avltree.o : avltree.cpp avltree.h
-	g++ -c avltree.cpp
+run : bst.o
+	g++ -o run bst.o
+bst.o : bst.cpp
+	g++ -c bst.cpp
 clean :
-	rm run avltree.o
+	rm run bst.o
