@@ -23,15 +23,15 @@
 				
 				virtual BinTreeNode* LeftChild(BinTreeNode*current)
 				{
-					return root!=NULL? current->leftChild:NULL;
+					return root!=NULL? current.leftChild:NULL;
 				}
 
 				virtual BinTreeNode* RightChild(BinTreeNode*current)
 				{	
-					return root!=NULL?current->rightChild:NULL;
+					return root!=NULL?current.rightChild:NULL;
 				}
 				
-				virtual void Insert(BinTreeNode *&current,const int &item);
+				virtual void Insert(BinTreeNode current,const int &item);
 				void Remove(int x,BinTreeNode* &ptr);
 				BinTreeNode* Min(BinTreeNode* ptr);
 				virtual int Find(const int& item)const{return 0;}
@@ -59,9 +59,9 @@
 		{
 			if(current!=NULL)
 			{
-				Traverse(current->leftChild,out);
-				out<<current->data<<",";
-				Traverse(current->rightChild,out);
+				Traverse(current.leftChild,out);
+				out<<current.data<<",";
+				Traverse(current.rightChild,out);
 			}
 		}
 		int	sumDeep;   
@@ -73,14 +73,14 @@
 		    sumDeep+=deep;   
 		    for(int i=0;i<deep;i++)
 				cout<<"\t";
-			cout<<aa->data<<endl;
-			if(NULL!=aa->leftChild)   
+			cout<<aa.data<<endl;
+			if(NULL!=aa.leftChild)   
 		    {
-				PrintBSTVer(aa->leftChild);   
+				PrintBSTVer(aa.leftChild);   
 			}   
-			if(NULL!=aa->rightChild)   
+			if(NULL!=aa.rightChild)   
 		    {   
-				PrintBSTVer(aa->rightChild);   
+				PrintBSTVer(aa.rightChild);   
 			}   
 		    deep-=1;   
 		    return deep;   
@@ -96,19 +96,19 @@
 				while(!Q.QueueEmpty())
 				{
 					current=Q.DeQueue();
-					if(currentHeight<current->deep)
+					if(currentHeight<current.deep)
 					{
-						currentHeight=current->deep;
+						currentHeight=current.deep;
 						out<<endl;
 					}
-					out<<current->data<<",";
-					if(NULL!=current->leftChild)
+					out<<current.data<<",";
+					if(NULL!=current.leftChild)
 					{
-						Q.EnQueue(current->leftChild);
+						Q.EnQueue(current.leftChild);
 					}
-					if(NULL!=current->rightChild)
+					if(NULL!=current.rightChild)
 					{
-						Q.EnQueue(current->rightChild);
+						Q.EnQueue(current.rightChild);
 					}
 				}
 			}
@@ -119,9 +119,9 @@
 		{
 			if(NULL!=ptr)
 			{
-				if(NULL!=ptr->leftChild)
+				if(NULL!=ptr.leftChild)
 				{
-					Min(ptr->leftChild);
+					Min(ptr.leftChild);
 				}
 				else
 				{
@@ -134,14 +134,14 @@
 		{
 			if(NULL!=ptr)
 			{
-				ptr->deep=height;
-				if(NULL!=ptr->leftChild)
+				ptr.deep=height;
+				if(NULL!=ptr.leftChild)
 				{
-					SetHeight(ptr->leftChild,ptr->deep+1);
+					SetHeight(ptr.leftChild,ptr.deep+1);
 				}
-				if(NULL!=ptr->rightChild)
+				if(NULL!=ptr.rightChild)
 				{
-					SetHeight(ptr->rightChild,ptr->deep+1);
+					SetHeight(ptr.rightChild,ptr.deep+1);
 				}
 			}
 		}
@@ -150,53 +150,53 @@
 			BinTreeNode* temp;
 			if(NULL!=ptr)
 			{
-				if(x<ptr->data)
+				if(x<ptr.data)
 				{
-					Remove(x,ptr->leftChild);
+					Remove(x,ptr.leftChild);
 				}
-				else if(x>ptr->data)
+				else if(x>ptr.data)
 				{
-					Remove(x,ptr->rightChild);
+					Remove(x,ptr.rightChild);
 				}
-				else if(ptr->leftChild!=NULL&&ptr->rightChild!=NULL)
+				else if(ptr.leftChild!=NULL&&ptr.rightChild!=NULL)
 				{
-					temp=Min(ptr->rightChild);
-					ptr->data=temp->data;
-					Remove(ptr->data,ptr->rightChild);
+					temp=Min(ptr.rightChild);
+					ptr.data=temp.data;
+					Remove(ptr.data,ptr.rightChild);
 				}
 				else
 				{
 					temp=ptr;
-					if(ptr->leftChild==NULL)
+					if(ptr.leftChild==NULL)
 					{
-						ptr=ptr->rightChild;//ֻ������Ů
-						SetHeight(ptr,temp->deep);
+						ptr=ptr.rightChild;//ֻ������Ů
+						SetHeight(ptr,temp.deep);
 						
 					}
-					else if(ptr->rightChild==NULL)
+					else if(ptr.rightChild==NULL)
 					{
-						ptr=ptr->leftChild;//ֻ������Ů
-						SetHeight(ptr,temp->deep);
+						ptr=ptr.leftChild;//ֻ������Ů
+						SetHeight(ptr,temp.deep);
 					}
 					delete temp;
 				}
 			}
 		}
 
-		void Insert(BinTreeNode *&current,const int &item)
+		void Insert(BinTreeNode current,const int &item)
 		{
 			if(current==NULL)
 			{
 				current=new BinTreeNode(item);
 				return ;
 		    }
-			if(item<current->data)
+			if(item<current.data)
 			{
-				Insert(current->leftChild,item);
+				Insert(current.leftChild,item);
 			}
 			else
 			{
-				Insert(current->rightChild,item);
+				Insert(current.rightChild,item);
 			}
 		}
 
