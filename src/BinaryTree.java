@@ -62,12 +62,11 @@ class BinaryTree {
 			current = new BinTreeNode(item, null, null);
 			if (root == null)
 				root = current;
-			return;
-		}
-		if (item < current.data) {
-			Insert(current.leftChild, item);
 		} else {
-			Insert(current.rightChild, item);
+			if (item < current.data)
+				current.leftChild = new BinTreeNode(item, null, null);
+			else
+				current.rightChild = new BinTreeNode(item, null, null);
 		}
 	}
 
@@ -119,11 +118,10 @@ class BinaryTree {
 		deep += 1;
 		sumDeep += deep;
 		for (int i = 0; i < deep; i++)
-			// cout<<"\t";
-			// cout<<aa.data<<endl;
-			if (null != aa.leftChild) {
-				PrintBSTVer(aa.leftChild);
-			}
+			System.out.println("\t" + aa.data);
+		if (null != aa.leftChild) {
+			PrintBSTVer(aa.leftChild);
+		}
 		if (null != aa.rightChild) {
 			PrintBSTVer(aa.rightChild);
 		}
