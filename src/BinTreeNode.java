@@ -1,5 +1,6 @@
 public class BinTreeNode {
 	int data;
+	int deep;
 	BinTreeNode leftChild;
 	BinTreeNode rightChild;
 
