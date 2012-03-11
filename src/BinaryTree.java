@@ -1,5 +1,3 @@
-import java.util.Queue;
-
 class BinaryTree {
 	public static void main(String[] args) {
 		BinaryTree tree = new BinaryTree();
@@ -37,8 +35,6 @@ class BinaryTree {
 		tree.Insert(tree.root, 81);
 		tree.Insert(tree.root, 88);
 
-		tree.height = tree.leftHeight > tree.rightHeight ? tree.leftHeight
-				: tree.rightHeight;
 		tree.currentHeight = 0;
 		tree.SetHeight(tree.root, 0);
 		// cout<<"before remove:"<<endl;
@@ -51,19 +47,11 @@ class BinaryTree {
 	}
 
 	private int currentHeight;
-
 	private int deep;
-
-	private int height;
-
 	private int leftHeight;
-
 	private int RefValue;
-
 	private int rightHeight;
-
 	private BinTreeNode root;
-
 	private int sumDeep;
 
 	void destroy(BinTreeNode current) {
@@ -71,7 +59,9 @@ class BinaryTree {
 
 	void Insert(BinTreeNode current, int item) {
 		if (current == null) {
-			current = new BinTreeNode(item, current, null);
+			current = new BinTreeNode(item, null, null);
+			if (root == null)
+				root = current;
 			return;
 		}
 		if (item < current.data) {
