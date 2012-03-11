@@ -51,11 +51,11 @@
 				void destroy(BinTreeNode* current);
 		};
 
-		void BinaryTree::destroy(BinTreeNode* current)
+		void destroy(BinTreeNode* current)
 		{
 		}
 
-		void BinaryTree::Traverse(BinTreeNode*current,ostream&out)const
+		void Traverse(BinTreeNode*current,ostream&out)const
 		{
 			if(current!=NULL)
 			{
@@ -67,7 +67,7 @@
 		int	sumDeep;   
 		int deep;   
 
-		int BinaryTree::PrintBSTVer(BinTreeNode* aa)   
+		int PrintBSTVer(BinTreeNode* aa)   
 		{
 			deep+=1;   
 		    sumDeep+=deep;   
@@ -86,7 +86,7 @@
 		    return deep;   
 		}   
 
-		int BinaryTree::PrintBSTHor(BinTreeNode*current,ostream&out)
+		int PrintBSTHor(BinTreeNode*current,ostream&out)
 		{
 			CirQueue<BinTreeNode*> Q;
 			Q.InitQueue();
@@ -115,7 +115,7 @@
 			return 0;
 		}
 
-		BinTreeNode* BinaryTree::Min(BinTreeNode* ptr)
+		BinTreeNode* Min(BinTreeNode* ptr)
 		{
 			if(NULL!=ptr)
 			{
@@ -130,7 +130,7 @@
 			}
 		}
 
-		void BinaryTree::SetHeight(BinTreeNode* ptr,int height)
+		void SetHeight(BinTreeNode* ptr,int height)
 		{
 			if(NULL!=ptr)
 			{
@@ -145,7 +145,7 @@
 				}
 			}
 		}
-		void BinaryTree::Remove(int x,BinTreeNode* &ptr)
+		void Remove(int x,BinTreeNode* &ptr)
 		{
 			BinTreeNode* temp;
 			if(NULL!=ptr)
@@ -183,7 +183,7 @@
 			}
 		}
 
-		void BinaryTree::Insert(BinTreeNode *&current,const int &item)
+		void Insert(BinTreeNode *&current,const int &item)
 		{
 			if(current==NULL)
 			{
