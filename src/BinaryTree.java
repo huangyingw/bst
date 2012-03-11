@@ -1,113 +1,69 @@
-
-		class BinaryTree
-		{
-			public:
-				bool addLayer;
-				int leftHeight;
-				int rightHeight;
-				int height;
-				int currentHeight;
-				BinTreeNode* root;
-				BinaryTree():root(NULL){}
-				BinaryTree(int value):RefValue(value),root(NULL){}
-				virtual ~BinaryTree(){destroy(root);}
+		class BinaryTree {
 				
 				
-				virtual int IsEmpty(){return root==NULL ? 1:0;}
+				int IsEmpty(){return root==null ? 1:0;}
 				
-				virtual BinTreeNode*Parent(BinTreeNode*current)
-				{
-					return root==NULL||root==current?NULL:Parent(current);
+				BinTreeNode Parent(BinTreeNode current) {
+					return root==null||root==current?null:Parent(current);
 				}
 
 				
-				virtual BinTreeNode* LeftChild(BinTreeNode*current)
-				{
-					return root!=NULL? current.leftChild:NULL;
+				BinTreeNode LeftChild(BinTreeNode current) {
+					return root!=null? current.leftChild:null;
 				}
 
-				virtual BinTreeNode* RightChild(BinTreeNode*current)
-				{	
-					return root!=NULL?current.rightChild:NULL;
+				BinTreeNode RightChild(BinTreeNode current) {	
+					return root!=null?current.rightChild:null;
 				}
 				
-				virtual void Insert(BinTreeNode current,const int &item);
-				void Remove(int x,BinTreeNode* &ptr);
-				BinTreeNode* Min(BinTreeNode* ptr);
-				virtual int Find(const int& item)const{return 0;}
 				
-				
-				const BinTreeNode* GetRoot()const {return root;}
-				int PrintBSTHor(BinTreeNode*current,ostream&out);
-				int PrintBSTVer(BinTreeNode* aa);
-				void SetHeight(BinTreeNode* ptr,int height);
-				friend istream &operator >> (istream &in,BinaryTree&Tree);
-				friend ostream &operator << (ostream &out ,BinaryTree&Tree);
-			private:
-				
-				int RefValue;
-				BinTreeNode* parent(BinTreeNode*start,BinTreeNode* current);
-				void Traverse(BinTreeNode* current,ostream& out)const;
-				void destroy(BinTreeNode* current);
-		};
+			private	int RefValue;
 
-		void destroy(BinTreeNode* current)
-		{
+		void destroy(BinTreeNode current) {
 		}
 
-		void Traverse(BinTreeNode*current,ostream&out)const
-		{
-			if(current!=NULL)
-			{
+		void Traverse(BinTreeNode current) {
+			if(current!=null) {
 				Traverse(current.leftChild,out);
-				out<<current.data<<",";
+//				out<<current.data<<",";
 				Traverse(current.rightChild,out);
 			}
 		}
-		int	sumDeep;   
-		int deep;   
+		private int	sumDeep;   
+		private int deep;   
 
-		int PrintBSTVer(BinTreeNode* aa)   
-		{
+		int PrintBSTVer(BinTreeNode aa)   {
 			deep+=1;   
 		    sumDeep+=deep;   
 		    for(int i=0;i<deep;i++)
-				cout<<"\t";
-			cout<<aa.data<<endl;
-			if(NULL!=aa.leftChild)   
-		    {
+				//cout<<"\t";
+			//cout<<aa.data<<endl;
+			if(null!=aa.leftChild)   {
 				PrintBSTVer(aa.leftChild);   
 			}   
-			if(NULL!=aa.rightChild)   
-		    {   
+			if(null!=aa.rightChild)   {   
 				PrintBSTVer(aa.rightChild);   
 			}   
 		    deep-=1;   
 		    return deep;   
 		}   
 
-		int PrintBSTHor(BinTreeNode*current,ostream&out)
-		{
-			CirQueue<BinTreeNode*> Q;
+		int PrintBSTHor(BinTreeNode current,ostream&out) {
+			CirQueue<BinTreeNode > Q;
 			Q.InitQueue();
-			if(NULL!=current)
-			{
+			if(null!=current) {
 				Q.EnQueue(current);
-				while(!Q.QueueEmpty())
-				{
+				while(!Q.QueueEmpty()) {
 					current=Q.DeQueue();
-					if(currentHeight<current.deep)
-					{
+					if(currentHeight<current.deep) {
 						currentHeight=current.deep;
 						out<<endl;
 					}
 					out<<current.data<<",";
-					if(NULL!=current.leftChild)
-					{
+					if(null!=current.leftChild) {
 						Q.EnQueue(current.leftChild);
 					}
-					if(NULL!=current.rightChild)
-					{
+					if(null!=current.rightChild) {
 						Q.EnQueue(current.rightChild);
 					}
 				}
@@ -115,67 +71,45 @@
 			return 0;
 		}
 
-		BinTreeNode* Min(BinTreeNode* ptr)
-		{
-			if(NULL!=ptr)
-			{
-				if(NULL!=ptr.leftChild)
-				{
+		BinTreeNode Min(BinTreeNode ptr) {
+			if(null!=ptr) {
+				if(null!=ptr.leftChild) {
 					Min(ptr.leftChild);
-				}
-				else
-				{
+				}else 
 					return ptr;
-				}
 			}
 		}
 
-		void SetHeight(BinTreeNode* ptr,int height)
-		{
-			if(NULL!=ptr)
-			{
+		void SetHeight( BinTreeNode ptr,int height) {
+			if(null!=ptr) {
 				ptr.deep=height;
-				if(NULL!=ptr.leftChild)
-				{
+				if(null!=ptr.leftChild) {
 					SetHeight(ptr.leftChild,ptr.deep+1);
 				}
-				if(NULL!=ptr.rightChild)
-				{
+				if(null!=ptr.rightChild) {
 					SetHeight(ptr.rightChild,ptr.deep+1);
 				}
 			}
 		}
-		void Remove(int x,BinTreeNode* &ptr)
-		{
-			BinTreeNode* temp;
-			if(NULL!=ptr)
-			{
-				if(x<ptr.data)
-				{
+		void Remove(int x,BinTreeNode &ptr) {
+			BinTreeNode temp;
+			if(null!=ptr) {
+				if(x<ptr.data) {
 					Remove(x,ptr.leftChild);
 				}
-				else if(x>ptr.data)
-				{
+				else if(x>ptr.data) {
 					Remove(x,ptr.rightChild);
-				}
-				else if(ptr.leftChild!=NULL&&ptr.rightChild!=NULL)
-				{
+				} else if(ptr.leftChild!=null&&ptr.rightChild!=null) {
 					temp=Min(ptr.rightChild);
 					ptr.data=temp.data;
 					Remove(ptr.data,ptr.rightChild);
-				}
-				else
-				{
+				} else {
 					temp=ptr;
-					if(ptr.leftChild==NULL)
-					{
+					if(ptr.leftChild==null) {
 						ptr=ptr.rightChild;//ֻ������Ů
 						SetHeight(ptr,temp.deep);
-						
-					}
-					else if(ptr.rightChild==NULL)
-					{
-						ptr=ptr.leftChild;//ֻ������Ů
+					} else if(ptr.rightChild==null) {
+						ptr=ptr.leftChild;
 						SetHeight(ptr,temp.deep);
 					}
 					delete temp;
@@ -183,40 +117,32 @@
 			}
 		}
 
-		void Insert(BinTreeNode current,const int &item)
-		{
-			if(current==NULL)
-			{
+		void Insert(BinTreeNode current,const int &item) {
+			if(current==null) {
 				current=new BinTreeNode(item);
 				return ;
 		    }
-			if(item<current.data)
-			{
+			if(item<current.data) {
 				Insert(current.leftChild,item);
-			}
-			else
-			{
+			} else {
 				Insert(current.rightChild,item);
 			}
 		}
 
-		istream &operator >>(istream& in ,BinaryTree& Tree)
-		{
+		istream &operator >>(istream& in ,BinaryTree& Tree) {
 			int item;
-			cout<<"construct binary tree:"<<endl;
-			cout<<"input data(end with"<<Tree.RefValue<<"):";
+			//cout<<"construct binary tree:"<<endl;
+			//cout<<"input data(end with"<<Tree.RefValue<<"):";
 			in >>item;
-			while(item!=Tree.RefValue)
-			{
+			while(item!=Tree.RefValue) {
 				Tree.Insert(Tree.root,item);
-				cout<<"input data(end with"<<Tree.RefValue <<"):";
+				//cout<<"input data(end with"<<Tree.RefValue <<"):";
 				in >>item;
 		    }
 			return in;
 		}
 
-		ostream & operator<<(ostream &out,BinaryTree&Tree)
-		{
+		ostream & operator<<(ostream &out,BinaryTree&Tree) {
 			out<<"preorder traversal of bianry tree"<<endl;
 			Tree.Traverse(Tree.root,out);
 			out<<endl;
@@ -224,7 +150,6 @@
 		}
 
 		public static void main(String[] args) {
-		{
 			BinaryTree tree(0);
 			tree.leftHeight=tree.rightHeight=0;
 			/*tree.Insert(tree.root,53);
@@ -273,16 +198,12 @@
 			tree.height=tree.leftHeight>tree.rightHeight? tree.leftHeight:tree.rightHeight;
 			tree.currentHeight=0;
 			tree.SetHeight(tree.root,0);
-			cout<<"before remove:"<<endl;
-			tree.PrintBSTHor(tree.root,cout);
+			//cout<<"before remove:"<<endl;
+			tree.PrintBSTHor(tree.root,//cout);
 			tree.Remove(78,tree.root);
-			cout<<"after remove:"<<endl;
+			//cout<<"after remove:"<<endl;
 			tree.currentHeight=0;
 			tree.SetHeight(tree.root,0);
-			tree.PrintBSTHor(tree.root,cout);
-			
-			return 0;
+			tree.PrintBSTHor(tree.root,//cout);
 		}
-
-
 	}
