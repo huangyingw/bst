@@ -86,7 +86,7 @@
 		    return deep;   
 		}   
 
-		int BinaryTree::PrintBSTHor(BinTreeNode*current,ostream&out)//��ӡ��BST����ͼ
+		int BinaryTree::PrintBSTHor(BinTreeNode*current,ostream&out)
 		{
 			CirQueue<BinTreeNode*> Q;
 			Q.InitQueue();
@@ -115,7 +115,7 @@
 			return 0;
 		}
 
-		BinTreeNode* BinaryTree::Min(BinTreeNode* ptr)//��ptr����������Ѱ��С����,����ָ�
+		BinTreeNode* BinaryTree::Min(BinTreeNode* ptr)
 		{
 			if(NULL!=ptr)
 			{
@@ -130,7 +130,7 @@
 			}
 		}
 
-		void BinaryTree::SetHeight(BinTreeNode* ptr,int height)//���õ�ǰ�ڵ��������ӽڵ��ĸ߶
+		void BinaryTree::SetHeight(BinTreeNode* ptr,int height)
 		{
 			if(NULL!=ptr)
 			{
@@ -152,19 +152,19 @@
 			{
 				if(x<ptr->data)
 				{
-					Remove(x,ptr->leftChild);//����������ִ��ɾ�
+					Remove(x,ptr->leftChild);
 				}
 				else if(x>ptr->data)
 				{
-					Remove(x,ptr->rightChild);//����������ִ��ɾ�
+					Remove(x,ptr->rightChild);
 				}
-				else if(ptr->leftChild!=NULL&&ptr->rightChild!=NULL)//ptrָʾ�ؼ���Ϊx�Ľ��㣬����������Ů
+				else if(ptr->leftChild!=NULL&&ptr->rightChild!=NULL)
 				{
-					temp=Min(ptr->rightChild);//��ptr->rightChild����Ѱ��С���
-					ptr->data=temp->data;//�øý������ݴ������������
-					Remove(ptr->data,ptr->rightChild);//����������ɾ���ý��
+					temp=Min(ptr->rightChild);
+					ptr->data=temp->data;
+					Remove(ptr->data,ptr->rightChild);
 				}
-				else//ptrָʾ�ؼ���Ϊx�Ľ��㣬��ֻ��һ����������Ů
+				else
 				{
 					temp=ptr;
 					if(ptr->leftChild==NULL)
@@ -183,14 +183,14 @@
 			}
 		}
 
-		void BinaryTree::Insert(BinTreeNode *&current,const int &item)//�����㷨��ָ���ķ�����д�úܺã�Ҫ�ú��о�
+		void BinaryTree::Insert(BinTreeNode *&current,const int &item)
 		{
-			if(current==NULL)//����currentָ���������ĸ����
+			if(current==NULL)
 			{
 				current=new BinTreeNode(item);
 				return ;
 		    }
-			if(item<current->data)//�����������
+			if(item<current->data)
 			{
 				Insert(current->leftChild,item);
 			}
