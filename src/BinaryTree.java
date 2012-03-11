@@ -1,7 +1,8 @@
 		class BinaryTree {
-				
-				
-				int IsEmpty(){return root==null ? 1:0;}
+				private BinTreeNode root;
+				int IsEmpty(){
+          return root==null ? 1:0;
+        }
 				
 				BinTreeNode Parent(BinTreeNode current) {
 					return root==null||root==current?null:Parent(current);
@@ -24,9 +25,9 @@
 
 		void Traverse(BinTreeNode current) {
 			if(current!=null) {
-				Traverse(current.leftChild,out);
-//				out<<current.data<<",";
-				Traverse(current.rightChild,out);
+				Traverse(current.leftChild);
+				System.out.print(current.data+",");
+				Traverse(current.rightChild);
 			}
 		}
 		private int	sumDeep;   
@@ -96,8 +97,7 @@
 			if(null!=ptr) {
 				if(x<ptr.data) {
 					Remove(x,ptr.leftChild);
-				}
-				else if(x>ptr.data) {
+				} else if(x>ptr.data) {
 					Remove(x,ptr.rightChild);
 				} else if(ptr.leftChild!=null&&ptr.rightChild!=null) {
 					temp=Min(ptr.rightChild);

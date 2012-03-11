@@ -1,6 +1,7 @@
 public class BinTreeNode {
-	private int data;
-	private BinTreeNode leftChild, rightChild;
+	int data;
+	BinTreeNode leftChild;
+	BinTreeNode rightChild;
 
 	BinTreeNode(int item, BinTreeNode left, BinTreeNode right) {
 		data = item;
