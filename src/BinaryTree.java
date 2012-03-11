@@ -39,11 +39,11 @@ class BinaryTree {
 		tree.SetHeight(tree.root, 0);
 		// cout<<"before remove:"<<endl;
 		tree.PrintBSTVer(tree.root);
-		tree.Remove(78, tree.root);
-		// cout<<"after remove:"<<endl;
-		tree.currentHeight = 0;
-		tree.SetHeight(tree.root, 0);
-		tree.PrintBSTVer(tree.root);
+		// tree.Remove(78, tree.root);
+		// // cout<<"after remove:"<<endl;
+		// tree.currentHeight = 0;
+		// tree.SetHeight(tree.root, 0);
+		// tree.PrintBSTVer(tree.root);
 	}
 
 	private int currentHeight;
@@ -63,10 +63,13 @@ class BinaryTree {
 			if (root == null)
 				root = current;
 		} else {
-			if (item < current.data)
-				current.leftChild = new BinTreeNode(item, null, null);
-			else
-				current.rightChild = new BinTreeNode(item, null, null);
+			if (item < current.data) {
+				Insert(current.leftChild, item);
+				System.out.println(current.leftChild.data);
+			} else {
+				Insert(current.rightChild, item);
+				System.out.println(current.rightChild.data);
+			}
 		}
 	}
 
