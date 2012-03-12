@@ -2,27 +2,6 @@ class BinaryTree {
 	public static void main(String[] args) {
 		BinaryTree tree = new BinaryTree();
 		tree.leftHeight = tree.rightHeight = 0;
-		/*
-		 * tree.Insert(tree.root,53); tree.Insert(tree.root,17);
-		 * tree.Insert(tree.root,78); tree.Insert(tree.root,9);
-		 * tree.Insert(tree.root,45); tree.Insert(tree.root,65);
-		 * tree.Insert(tree.root,87); tree.Insert(tree.root,23);
-		 * tree.Insert(tree.root,81);
-		 */
-
-		/*
-		 * tree.Insert(tree.root,53); tree.Insert(tree.root,17);
-		 * tree.Insert(tree.root,78); tree.Insert(tree.root,9);
-		 * tree.Insert(tree.root,45); tree.Insert(tree.root,65);
-		 * tree.Insert(tree.root,87); tree.Insert(tree.root,23);
-		 */
-
-		/*
-		 * tree.Insert(tree.root,53); tree.Insert(tree.root,17);
-		 * tree.Insert(tree.root,78); tree.Insert(tree.root,9);
-		 * tree.Insert(tree.root,23); tree.Insert(tree.root,94);
-		 * tree.Insert(tree.root,88);
-		 */
 
 		tree.Insert(tree.root, 53);
 		tree.Insert(tree.root, 17);
@@ -35,10 +14,7 @@ class BinaryTree {
 		tree.Insert(tree.root, 81);
 		tree.Insert(tree.root, 88);
 
-		tree.currentHeight = 0;
-		tree.SetHeight(tree.root, 0);
-		// cout<<"before remove:"<<endl;
-		tree.PrintBSTVer(tree.root);
+		tree.LevelOrder(tree.root, 0);
 		// tree.Remove(78, tree.root);
 		// // cout<<"after remove:"<<endl;
 		// tree.currentHeight = 0;
@@ -55,6 +31,20 @@ class BinaryTree {
 	private int sumDeep;
 
 	void destroy(BinTreeNode current) {
+	}
+
+	void LevelOrder(BinTreeNode current, int indent) {
+		if (current.rightChild == null) {
+			for (int i = 0; i < indent; i++)
+				System.out.print("\t");
+			System.out.print(current.data + "\n");
+		} else {
+			LevelOrder(current.rightChild, indent++);
+			for (int i = 0; i < indent; i++)
+				System.out.print("\t");
+			System.out.println(current.data);
+		}
+
 	}
 
 	BinTreeNode Insert(BinTreeNode current, int item) {
