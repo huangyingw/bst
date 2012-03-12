@@ -57,20 +57,19 @@ class BinaryTree {
 	void destroy(BinTreeNode current) {
 	}
 
-	void Insert(BinTreeNode current, int item) {
+	BinTreeNode Insert(BinTreeNode current, int item) {
 		if (current == null) {
 			current = new BinTreeNode(item, null, null);
 			if (root == null)
 				root = current;
 		} else {
 			if (item < current.data) {
-				Insert(current.leftChild, item);
-				System.out.println(current.leftChild.data);
+				current.leftChild = Insert(current.leftChild, item);
 			} else {
-				Insert(current.rightChild, item);
-				System.out.println(current.rightChild.data);
+				current.rightChild = Insert(current.rightChild, item);
 			}
 		}
+		return current;
 	}
 
 	int IsEmpty() {
