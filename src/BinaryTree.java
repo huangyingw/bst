@@ -171,19 +171,6 @@ class BinaryTree {
 		}
 	}
 
-	// istream &operator >>(istream& in ,BinaryTree& Tree) {
-	// int item;
-	// //cout<<"construct binary tree:"<<endl;
-	// //cout<<"input data(end with"<<Tree.RefValue<<"):";
-	// in >>item;
-	// while(item!=Tree.RefValue) {
-	// Tree.Insert(Tree.root,item);
-	// //cout<<"input data(end with"<<Tree.RefValue <<"):";
-	// in >>item;
-	// }
-	// return in;
-	// }
-
 	// ostream & operator<<(ostream &out,BinaryTree&Tree) {
 	// out<<"preorder traversal of bianry tree"<<endl;
 	// Tree.Traverse(Tree.root,out);
