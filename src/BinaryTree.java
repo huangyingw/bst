@@ -33,20 +33,6 @@ class BinaryTree {
 	void destroy(BinTreeNode current) {
 	}
 
-	void LevelOrder(BinTreeNode current, int indent) {
-		if (current.rightChild == null) {
-			for (int i = 0; i < indent; i++)
-				System.out.print("\t");
-			System.out.print(current.data + "\n");
-		} else {
-			LevelOrder(current.rightChild, indent++);
-			for (int i = 0; i < indent; i++)
-				System.out.print("\t");
-			System.out.println(current.data);
-		}
-
-	}
-
 	BinTreeNode Insert(BinTreeNode current, int item) {
 		if (current == null) {
 			current = new BinTreeNode(item, null, null);
@@ -68,6 +54,27 @@ class BinaryTree {
 
 	BinTreeNode LeftChild(BinTreeNode current) {
 		return root != null ? current.leftChild : null;
+	}
+
+	void LevelOrder(BinTreeNode current, int indent) {
+		if (current.rightChild == null) {
+			for (int i = 0; i < indent; i++)
+				System.out.print("\t");
+			System.out.print(current.data);
+			if ((current.leftChild != null)) {
+				LevelOrder(current.leftChild, indent + 1);
+			}
+		} else if (current.leftChild == null) {
+			for (int i = 0; i < indent; i++)
+				System.out.print("\t");
+			System.out.print(current.data + "\n");
+		} else {
+			LevelOrder(current.rightChild, indent + 1);
+			// for (int i = 0; i < indent; i++)
+			// System.out.print("\t");
+			// System.out.println(current.data);
+			LevelOrder(current.leftChild, indent + 1);
+		}
 	}
 
 	BinTreeNode Min(BinTreeNode ptr) {
