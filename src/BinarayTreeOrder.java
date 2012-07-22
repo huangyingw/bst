@@ -32,7 +32,9 @@ public class BinarayTreeOrder {
 			int preLeft, int preRight, int inLeft, int inRight) {
 		int parent, leftSize, rightSize;
 		if (preLeft <= preRight && inLeft <= inRight) {
+			System.out.print("The preOrder:");
 			printArr(preOrder, preLeft, preRight);
+			System.out.print("The inOrder:");
 			printArr(inOrder, inLeft, inRight);
 			parent = inLeft;
 			while (parent <= inRight && inOrder[parent] != preOrder[preLeft])
