@@ -47,7 +47,7 @@ public class BinarayTreeOrder {
 		int parent, leftSize, rightSize;
 		if (posLeft <= posRight && inLeft <= inRight) {
 			parent = inLeft;
-			while (parent <= inRight && inOrder[parent] != posOrder[posLeft])
+			while (parent <= inRight && inOrder[parent] != posOrder[posRight])
 				parent++;
 			leftSize = parent - inLeft;
 			rightSize = inRight - parent;
