@@ -11,14 +11,24 @@ public class BinarayTreeOrder {
 	public static void main(String[] args) {
 		int[] inOrderArr = { 1, 5, 4, 2, 3, 8, 7 };
 		int[] preOrderArr = { 2, 5, 1, 4, 8, 3, 7 };
-		int[] posOrderAdd = { 1, 4, 5, 3, 7, 8, 2 };
+		int[] posOrderArr = { 1, 4, 5, 3, 7, 8, 2 };
 		printPosOrder(preOrderArr, inOrderArr);
 		sb.deleteCharAt(sb.length() - 1);
 		System.out.println(sb.toString());
+		sb = new StringBuilder();
+		printPreOrder(posOrderArr, inOrderArr);
+		sb.deleteCharAt(sb.length() - 1);
+		System.out.println(sb.toString());
+
 	}
 
 	public static void printPosOrder(int[] preOrder, int[] inOrder) {
 		printPosOrder(preOrder, inOrder, 0, preOrder.length - 1, 0,
+				inOrder.length - 1);
+	}
+
+	public static void printPreOrder(int[] posOrder, int[] inOrder) {
+		printPreOrder(posOrder, inOrder, 0, posOrder.length - 1, 0,
 				inOrder.length - 1);
 	}
 
@@ -59,7 +69,7 @@ public class BinarayTreeOrder {
 		int parent, leftSize, rightSize;
 		if (posLeft <= posRight && inLeft <= inRight) {
 			parent = inLeft;
-			while (parent <= inRight && inOrder[parent] != posOrder[posRight])
+			while (parent < inRight && inOrder[parent] != posOrder[posLeft])
 				parent++;
 			leftSize = parent - inLeft;
 			rightSize = inRight - parent;
