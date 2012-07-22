@@ -11,6 +11,7 @@ public class BinarayTreeOrder {
 	public static void main(String[] args) {
 		int[] inOrderArr = { 1, 5, 4, 2, 3, 8, 7 };
 		int[] preOrderArr = { 2, 5, 1, 4, 8, 3, 7 };
+		int[] posOrderAdd = { 1, 4, 5, 3, 7, 8, 2 };
 		printPosOrder(preOrderArr, inOrderArr);
 		sb.deleteCharAt(sb.length() - 1);
 		System.out.println(sb.toString());
