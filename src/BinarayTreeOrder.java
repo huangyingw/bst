@@ -72,18 +72,19 @@ public class BinarayTreeOrder {
 			printArr(posOrder, posLeft, posRight);
 			System.out.print("The inOrder:");
 			printArr(inOrder, inLeft, inRight);
+			System.out.println();
 			parent = inLeft;
 			while (parent < inRight && inOrder[parent] != posOrder[posRight])
 				parent++;
 			leftSize = parent - inLeft;
 			rightSize = inRight - parent;
 			if (leftSize > 0) {
-				printPreOrder(posOrder, inOrder, posLeft + 1, posLeft
-						+ leftSize, inLeft, parent - 1);
+				printPreOrder(posOrder, inOrder, posLeft, posLeft + leftSize
+						- 1, inLeft, parent - 1);
 			}
 			if (rightSize > 0) {
-				printPreOrder(posOrder, inOrder, posLeft + leftSize + 1,
-						posRight, parent + 1, inRight);
+				printPreOrder(posOrder, inOrder, posLeft + leftSize, posLeft
+						+ leftSize + rightSize - 1, parent + 1, inRight);
 			}
 			sb.append(inOrder[parent]).append(",");
 		}
