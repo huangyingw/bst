@@ -21,10 +21,19 @@ public class BinarayTreeOrder {
 				inOrder.length - 1);
 	}
 
+	public static void printArr(int[] Arr, int begin, int end) {
+		for (int i = begin; i <= end; i++) {
+			System.out.print(Arr[i] + ",");
+		}
+		System.out.println();
+	}
+
 	public static void printPosOrder(int[] preOrder, int[] inOrder,
 			int preLeft, int preRight, int inLeft, int inRight) {
 		int parent, leftSize, rightSize;
 		if (preLeft <= preRight && inLeft <= inRight) {
+			printArr(preOrder, preLeft, preRight);
+			printArr(inOrder, inLeft, inRight);
 			parent = inLeft;
 			while (parent <= inRight && inOrder[parent] != preOrder[preLeft])
 				parent++;
