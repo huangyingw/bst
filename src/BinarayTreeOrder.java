@@ -42,22 +42,22 @@ public class BinarayTreeOrder {
 		}
 	}
 
-	public static void printPreOrder(int[] preOrder, int[] inOrder,
-			int preLeft, int preRight, int inLeft, int inRight) {
+	public static void printPreOrder(int[] posOrder, int[] inOrder,
+			int posLeft, int posRight, int inLeft, int inRight) {
 		int parent, leftSize, rightSize;
-		if (preLeft <= preRight && inLeft <= inRight) {
+		if (posLeft <= posRight && inLeft <= inRight) {
 			parent = inLeft;
-			while (parent <= inRight && inOrder[parent] != preOrder[preLeft])
+			while (parent <= inRight && inOrder[parent] != posOrder[posLeft])
 				parent++;
 			leftSize = parent - inLeft;
 			rightSize = inRight - parent;
 			if (leftSize > 0) {
-				printPosOrder(preOrder, inOrder, preLeft + 1, preLeft
+				printPreOrder(posOrder, inOrder, posLeft + 1, posLeft
 						+ leftSize, inLeft, parent - 1);
 			}
 			if (rightSize > 0) {
-				printPosOrder(preOrder, inOrder, preLeft + leftSize + 1,
-						preRight, parent + 1, inRight);
+				printPreOrder(posOrder, inOrder, posLeft + leftSize + 1,
+						posRight, parent + 1, inRight);
 			}
 			sb.append(inOrder[parent]).append(",");
 		}
