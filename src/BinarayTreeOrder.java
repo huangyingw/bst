@@ -9,32 +9,37 @@ public class BinarayTreeOrder {
 	private static StringBuilder sb = new StringBuilder();
 
 	public static void main(String[] args) {
-		int[] inorder = { 1, 5, 4, 2, 3, 8, 7 };
-		int[] preorder = { 2, 5, 1, 4, 8, 3, 7 };
-		printPosOrder(preorder, inorder, 0, 6, 0, 6);
+		int[] inOrder = { 1, 5, 4, 2, 3, 8, 7 };
+		int[] preOrder = { 2, 5, 1, 4, 8, 3, 7 };
+		printPosOrder(preOrder, inOrder);
 		sb.deleteCharAt(sb.length() - 1);
 		System.out.println(sb.toString());
 	}
 
-	public static void printPosOrder(int[] preorder, int[] inorder,
+	public static void printPosOrder(int[] preOrder, int[] inOrder) {
+		printPosOrder(preOrder, inOrder, 0, preOrder.length - 1, 0,
+				inOrder.length - 1);
+	}
+
+	public static void printPosOrder(int[] preOrder, int[] inOrder,
 			int preLeft, int preRight, int inLeft, int inRight) {
 		int parent, leftSize, rightSize;
 		if (preLeft <= preRight && inLeft <= inRight) {
 			for (parent = inLeft; parent <= inRight; parent++) {
-				if (inorder[parent] == preorder[preLeft])
+				if (inOrder[parent] == preOrder[preLeft])
 					break;
 			}
 			leftSize = parent - inLeft;
 			rightSize = inRight - parent;
 			if (leftSize > 0) {
-				printPosOrder(preorder, inorder, preLeft + 1, preLeft
+				printPosOrder(preOrder, inOrder, preLeft + 1, preLeft
 						+ leftSize, inLeft, parent - 1);
 			}
 			if (rightSize > 0) {
-				printPosOrder(preorder, inorder, preLeft + leftSize + 1,
+				printPosOrder(preOrder, inOrder, preLeft + leftSize + 1,
 						preRight, parent + 1, inRight);
 			}
-			sb.append(inorder[parent]).append(",");
+			sb.append(inOrder[parent]).append(",");
 		}
 	}
 }
