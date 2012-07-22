@@ -9,9 +9,9 @@ public class BinarayTreeOrder {
 	private static StringBuilder sb = new StringBuilder();
 
 	public static void main(String[] args) {
-		int[] inOrder = { 1, 5, 4, 2, 3, 8, 7 };
-		int[] preOrder = { 2, 5, 1, 4, 8, 3, 7 };
-		printPosOrder(preOrder, inOrder);
+		int[] inOrderArr = { 1, 5, 4, 2, 3, 8, 7 };
+		int[] preOrderArr = { 2, 5, 1, 4, 8, 3, 7 };
+		printPosOrder(preOrderArr, inOrderArr);
 		sb.deleteCharAt(sb.length() - 1);
 		System.out.println(sb.toString());
 	}
