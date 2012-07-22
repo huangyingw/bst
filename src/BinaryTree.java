@@ -20,7 +20,11 @@ class BinaryTree {
 		// tree.currentHeight = 0;
 		// tree.SetHeight(tree.root, 0);
 		// tree.PrintBSTVer(tree.root);
-		tree.Traverse(tree.root);
+		tree.preTraverse(tree.root);
+		System.out.println();
+		tree.inTraverse(tree.root);
+		System.out.println();
+		tree.posTraverse(tree.root);
 	}
 
 	private int currentHeight;
@@ -47,6 +51,14 @@ class BinaryTree {
 			}
 		}
 		return current;
+	}
+
+	void inTraverse(BinTreeNode current) {
+		if (current != null) {
+			inTraverse(current.leftChild);
+			System.out.print(current.data + ",");
+			inTraverse(current.rightChild);
+		}
 	}
 
 	int IsEmpty() {
@@ -79,10 +91,6 @@ class BinaryTree {
 		return ptr;
 	}
 
-	BinTreeNode Parent(BinTreeNode current) {
-		return root == null || root == current ? null : Parent(current);
-	}
-
 	// int PrintBSTHor(BinTreeNode current) {
 	// Queue<BinTreeNode > Q;
 	// Q.InitQueue();
@@ -106,6 +114,26 @@ class BinaryTree {
 	// return 0;
 	// }
 
+	BinTreeNode Parent(BinTreeNode current) {
+		return root == null || root == current ? null : Parent(current);
+	}
+
+	void posTraverse(BinTreeNode current) {
+		if (current != null) {
+			posTraverse(current.leftChild);
+			posTraverse(current.rightChild);
+			System.out.print(current.data + ",");
+		}
+	}
+
+	void preTraverse(BinTreeNode current) {
+		if (current != null) {
+			System.out.print(current.data + ",");
+			preTraverse(current.leftChild);
+			preTraverse(current.rightChild);
+		}
+	}
+
 	int PrintBSTVer(BinTreeNode aa) {
 		deep += 1;
 		sumDeep += deep;
@@ -120,6 +148,13 @@ class BinaryTree {
 		deep -= 1;
 		return deep;
 	}
+
+	// ostream & operator<<(ostream &out,BinaryTree&Tree) {
+	// out<<"preorder traversal of bianry tree"<<endl;
+	// Tree.Traverse(Tree.root,out);
+	// out<<endl;
+	// return out;
+	// }
 
 	void Remove(int x, BinTreeNode ptr) {
 		BinTreeNode temp;
@@ -161,18 +196,4 @@ class BinaryTree {
 		}
 	}
 
-	// ostream & operator<<(ostream &out,BinaryTree&Tree) {
-	// out<<"preorder traversal of bianry tree"<<endl;
-	// Tree.Traverse(Tree.root,out);
-	// out<<endl;
-	// return out;
-	// }
-
-	void Traverse(BinTreeNode current) {
-		if (current != null) {
-			Traverse(current.leftChild);
-			System.out.print(current.data + ",");
-			Traverse(current.rightChild);
-		}
-	}
 }
