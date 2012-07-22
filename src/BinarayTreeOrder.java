@@ -18,20 +18,20 @@ public class BinarayTreeOrder {
 
 	public static void printPosOrder(int[] preorder, int[] inorder,
 			int preLeft, int preRight, int inLeft, int inRight) {
-		int parent, leftsize, rightsize;
+		int parent, leftSize, rightSize;
 		if (preLeft <= preRight && inLeft <= inRight) {
 			for (parent = inLeft; parent <= inRight; parent++) {
 				if (inorder[parent] == preorder[preLeft])
 					break;
 			}
-			leftsize = parent - inLeft;
-			rightsize = inRight - parent;
-			if (leftsize > 0) {
+			leftSize = parent - inLeft;
+			rightSize = inRight - parent;
+			if (leftSize > 0) {
 				printPosOrder(preorder, inorder, preLeft + 1, preLeft
-						+ leftsize, inLeft, parent - 1);
+						+ leftSize, inLeft, parent - 1);
 			}
-			if (rightsize > 0) {
-				printPosOrder(preorder, inorder, preLeft + leftsize + 1,
+			if (rightSize > 0) {
+				printPosOrder(preorder, inorder, preLeft + leftSize + 1,
 						preRight, parent + 1, inRight);
 			}
 			sb.append(inorder[parent]).append(",");
