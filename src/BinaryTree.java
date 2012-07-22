@@ -20,6 +20,7 @@ class BinaryTree {
 		// tree.currentHeight = 0;
 		// tree.SetHeight(tree.root, 0);
 		// tree.PrintBSTVer(tree.root);
+		tree.Traverse(tree.root);
 	}
 
 	private int currentHeight;
