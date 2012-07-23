@@ -32,15 +32,45 @@ class BinaryTree {
 	private int leftHeight;
 	private int RefValue;
 	private int rightHeight;
-	private BinTreeNode root;
+	private BTreeNode root;
 	private int sumDeep;
 
-	void destroy(BinTreeNode current) {
+	public BinaryTree() {
+		// TODO Auto-generated constructor stub
 	}
 
-	BinTreeNode Insert(BinTreeNode current, int item) {
+	public BinaryTree(int[] pOrder, int[] iOrder, Boolean preOrPos) {
+		super();
+		if (preOrPos)
+			CreateBTreePre(pOrder, iOrder, null);
+		else
+			CreateBTreePos(pOrder, iOrder, null);
+	}
+
+	public void CreateBTreePos(int[] posOrder, int[] inOrder, BTreeNode root) {
+
+	}
+
+	public void CreateBTreePos(int[] posOrder, int[] inOrder, int posLeft,
+			int posRight, int inLeft, int inRight) {
+
+	}
+
+	public void CreateBTreePre(int[] preOrder, int[] inOrder, BTreeNode root) {
+
+	}
+
+	public void CreateBTreePre(int[] preOrder, int[] inOrder, int preLeft,
+			int preRight, int inLeft, int inRight) {
+
+	}
+
+	void destroy(BTreeNode current) {
+	}
+
+	BTreeNode Insert(BTreeNode current, int item) {
 		if (current == null) {
-			current = new BinTreeNode(item, null, null);
+			current = new BTreeNode(item, null, null);
 			if (root == null)
 				root = current;
 		} else {
@@ -53,7 +83,7 @@ class BinaryTree {
 		return current;
 	}
 
-	void inTraverse(BinTreeNode current) {
+	void inTraverse(BTreeNode current) {
 		if (current != null) {
 			inTraverse(current.leftChild);
 			System.out.print(current.data + ",");
@@ -65,11 +95,11 @@ class BinaryTree {
 		return root == null ? 1 : 0;
 	}
 
-	BinTreeNode LeftChild(BinTreeNode current) {
+	BTreeNode LeftChild(BTreeNode current) {
 		return root != null ? current.leftChild : null;
 	}
 
-	void LevelOrder(BinTreeNode current, int indent) {
+	void LevelOrder(BTreeNode current, int indent) {
 		if (current.rightChild != null) {
 			LevelOrder(current.rightChild, indent + 1);
 		}
@@ -82,7 +112,7 @@ class BinaryTree {
 		}
 	}
 
-	BinTreeNode Min(BinTreeNode ptr) {
+	BTreeNode Min(BTreeNode ptr) {
 		if (null != ptr) {
 			if (null != ptr.leftChild) {
 				Min(ptr.leftChild);
@@ -114,11 +144,11 @@ class BinaryTree {
 	// return 0;
 	// }
 
-	BinTreeNode Parent(BinTreeNode current) {
+	BTreeNode Parent(BTreeNode current) {
 		return root == null || root == current ? null : Parent(current);
 	}
 
-	void posTraverse(BinTreeNode current) {
+	void posTraverse(BTreeNode current) {
 		if (current != null) {
 			posTraverse(current.leftChild);
 			posTraverse(current.rightChild);
@@ -126,7 +156,7 @@ class BinaryTree {
 		}
 	}
 
-	void preTraverse(BinTreeNode current) {
+	void preTraverse(BTreeNode current) {
 		if (current != null) {
 			System.out.print(current.data + ",");
 			preTraverse(current.leftChild);
@@ -134,7 +164,7 @@ class BinaryTree {
 		}
 	}
 
-	int PrintBSTVer(BinTreeNode aa) {
+	int PrintBSTVer(BTreeNode aa) {
 		deep += 1;
 		sumDeep += deep;
 		for (int i = 0; i < deep; i++)
@@ -156,8 +186,8 @@ class BinaryTree {
 	// return out;
 	// }
 
-	void Remove(int x, BinTreeNode ptr) {
-		BinTreeNode temp;
+	void Remove(int x, BTreeNode ptr) {
+		BTreeNode temp;
 		if (null != ptr) {
 			if (x < ptr.data) {
 				Remove(x, ptr.leftChild);
@@ -180,11 +210,11 @@ class BinaryTree {
 		}
 	}
 
-	BinTreeNode RightChild(BinTreeNode current) {
+	BTreeNode RightChild(BTreeNode current) {
 		return root != null ? current.rightChild : null;
 	}
 
-	void SetHeight(BinTreeNode ptr, int height) {
+	void SetHeight(BTreeNode ptr, int height) {
 		if (null != ptr) {
 			ptr.deep = height;
 			if (null != ptr.leftChild) {

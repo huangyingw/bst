@@ -1,10 +1,10 @@
-public class BinTreeNode {
+public class BTreeNode {
 	int data;
 	int deep;
-	BinTreeNode leftChild;
-	BinTreeNode rightChild;
+	BTreeNode leftChild;
+	BTreeNode rightChild;
 
-	BinTreeNode(int item, BinTreeNode left, BinTreeNode right) {
+	BTreeNode(int item, BTreeNode left, BTreeNode right) {
 		data = item;
 		leftChild = left;
 		rightChild = right;
@@ -14,11 +14,11 @@ public class BinTreeNode {
 		return data;
 	}
 
-	BinTreeNode GetLeft() {
+	BTreeNode GetLeft() {
 		return leftChild;
 	}
 
-	BinTreeNode GetRight() {
+	BTreeNode GetRight() {
 		return rightChild;
 	}
 
@@ -26,11 +26,11 @@ public class BinTreeNode {
 		data = item;
 	}
 
-	void SetLeft(BinTreeNode L) {
+	void SetLeft(BTreeNode L) {
 		leftChild = L;
 	}
 
-	void SetRight(BinTreeNode R) {
+	void SetRight(BTreeNode R) {
 		rightChild = R;
 	}
 }
