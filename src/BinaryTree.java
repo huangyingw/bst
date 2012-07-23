@@ -25,6 +25,17 @@ class BinaryTree {
 		tree.inTraverse(tree.root);
 		System.out.println();
 		tree.posTraverse(tree.root);
+		System.out.println();
+
+		int[] preOrder = { 53, 17, 9, 45, 23, 78, 65, 94, 81, 88 };
+		int[] inOrder = { 9, 17, 23, 45, 53, 65, 78, 81, 88, 94 };
+		int[] posOrder = { 9, 23, 45, 17, 65, 88, 81, 94, 78, 53 };
+		BinaryTree bTree = new BinaryTree(preOrder, inOrder, true);
+		bTree.inTraverse(bTree.root);
+		System.out.println();
+		bTree = new BinaryTree(posOrder, inOrder, false);
+		bTree.inTraverse(bTree.root);
+
 	}
 
 	private int currentHeight;
