@@ -53,6 +53,22 @@ class BinaryTree {
 
 	public void CreateBTreePos(int[] posOrder, int[] inOrder, int posLeft,
 			int posRight, int inLeft, int inRight) {
+		int parent, leftSize, rightSize;
+		if (posLeft <= posRight && inLeft <= inRight) {
+			parent = inLeft;
+			while (parent < inRight && inOrder[parent] != posOrder[posRight])
+				parent++;
+			leftSize = parent - inLeft;
+			rightSize = inRight - parent;
+			if (leftSize > 0) {
+				CreateBTreePos(posOrder, inOrder, posLeft, posLeft + leftSize
+						- 1, inLeft, parent - 1);
+			}
+			if (rightSize > 0) {
+				CreateBTreePos(posOrder, inOrder, posLeft + leftSize, posLeft
+						+ leftSize + rightSize - 1, parent + 1, inRight);
+			}
+		}
 
 	}
 
@@ -62,6 +78,22 @@ class BinaryTree {
 
 	public void CreateBTreePre(int[] preOrder, int[] inOrder, int preLeft,
 			int preRight, int inLeft, int inRight) {
+		int parent, leftSize, rightSize;
+		if (preLeft <= preRight && inLeft <= inRight) {
+			parent = inLeft;
+			while (parent <= inRight && inOrder[parent] != preOrder[preLeft])
+				parent++;
+			leftSize = parent - inLeft;
+			rightSize = inRight - parent;
+			if (leftSize > 0) {
+				CreateBTreePre(preOrder, inOrder, preLeft + 1, preLeft
+						+ leftSize, inLeft, parent - 1);
+			}
+			if (rightSize > 0) {
+				CreateBTreePre(preOrder, inOrder, preLeft + leftSize + 1,
+						preRight, parent + 1, inRight);
+			}
+		}
 
 	}
 
