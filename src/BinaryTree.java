@@ -42,13 +42,14 @@ class BinaryTree {
 	public BinaryTree(int[] pOrder, int[] iOrder, Boolean preOrPos) {
 		super();
 		if (preOrPos)
-			CreateBTreePre(pOrder, iOrder, null);
+			CreateBTreePre(pOrder, iOrder);
 		else
-			CreateBTreePos(pOrder, iOrder, null);
+			CreateBTreePos(pOrder, iOrder);
 	}
 
-	public void CreateBTreePos(int[] posOrder, int[] inOrder, BTreeNode root) {
-
+	public void CreateBTreePos(int[] posOrder, int[] inOrder) {
+		root = CreateBTreePos(posOrder, inOrder, 0, posOrder.length - 1, 0,
+				inOrder.length - 1);
 	}
 
 	public BTreeNode CreateBTreePos(int[] posOrder, int[] inOrder, int posLeft,
@@ -75,8 +76,9 @@ class BinaryTree {
 		return null;
 	}
 
-	public void CreateBTreePre(int[] preOrder, int[] inOrder, BTreeNode root) {
-
+	public void CreateBTreePre(int[] preOrder, int[] inOrder) {
+		root = CreateBTreePre(preOrder, inOrder, 0, preOrder.length - 1, 0,
+				inOrder.length - 1);
 	}
 
 	public BTreeNode CreateBTreePre(int[] preOrder, int[] inOrder, int preLeft,
