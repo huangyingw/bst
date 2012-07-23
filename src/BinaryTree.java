@@ -51,50 +51,56 @@ class BinaryTree {
 
 	}
 
-	public void CreateBTreePos(int[] posOrder, int[] inOrder, int posLeft,
+	public BTreeNode CreateBTreePos(int[] posOrder, int[] inOrder, int posLeft,
 			int posRight, int inLeft, int inRight) {
 		int parent, leftSize, rightSize;
 		if (posLeft <= posRight && inLeft <= inRight) {
 			parent = inLeft;
 			while (parent < inRight && inOrder[parent] != posOrder[posRight])
 				parent++;
+			BTreeNode root = new BTreeNode(inOrder[parent], null, null);
 			leftSize = parent - inLeft;
 			rightSize = inRight - parent;
 			if (leftSize > 0) {
-				CreateBTreePos(posOrder, inOrder, posLeft, posLeft + leftSize
-						- 1, inLeft, parent - 1);
+				root.leftChild = CreateBTreePos(posOrder, inOrder, posLeft,
+						posLeft + leftSize - 1, inLeft, parent - 1);
 			}
 			if (rightSize > 0) {
-				CreateBTreePos(posOrder, inOrder, posLeft + leftSize, posLeft
-						+ leftSize + rightSize - 1, parent + 1, inRight);
+				root.rightChild = CreateBTreePos(posOrder, inOrder, posLeft
+						+ leftSize, posLeft + leftSize + rightSize - 1,
+						parent + 1, inRight);
 			}
+			return root;
 		}
-
+		return null;
 	}
 
 	public void CreateBTreePre(int[] preOrder, int[] inOrder, BTreeNode root) {
 
 	}
 
-	public void CreateBTreePre(int[] preOrder, int[] inOrder, int preLeft,
+	public BTreeNode CreateBTreePre(int[] preOrder, int[] inOrder, int preLeft,
 			int preRight, int inLeft, int inRight) {
 		int parent, leftSize, rightSize;
 		if (preLeft <= preRight && inLeft <= inRight) {
+
 			parent = inLeft;
 			while (parent <= inRight && inOrder[parent] != preOrder[preLeft])
 				parent++;
+			BTreeNode root = new BTreeNode(inOrder[parent], null, null);
 			leftSize = parent - inLeft;
 			rightSize = inRight - parent;
 			if (leftSize > 0) {
-				CreateBTreePre(preOrder, inOrder, preLeft + 1, preLeft
-						+ leftSize, inLeft, parent - 1);
+				root.leftChild = CreateBTreePre(preOrder, inOrder, preLeft + 1,
+						preLeft + leftSize, inLeft, parent - 1);
 			}
 			if (rightSize > 0) {
-				CreateBTreePre(preOrder, inOrder, preLeft + leftSize + 1,
-						preRight, parent + 1, inRight);
+				root.rightChild = CreateBTreePre(preOrder, inOrder, preLeft
+						+ leftSize + 1, preRight, parent + 1, inRight);
 			}
+			return root;
 		}
-
+		return null;
 	}
 
 	void destroy(BTreeNode current) {
